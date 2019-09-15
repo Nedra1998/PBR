@@ -1,0 +1,8 @@
+[book]
+authors = ["Arden Rasmussen"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Specula"
+[output.html]
+theme = "src/theme"

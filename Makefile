@@ -1,14 +1,18 @@
-FILES := $(filter-out ./SUMMARY.md, $(shell find . -name "*.md"))
+FILES:=$(filter-out ./src/SUMMARY.md, $(shell find ./src -name "*.md" | sort -V))
 
-pdf: Specula.pdf
+pdf: pbr.pdf
 
-serve: Specula.pdf
-	pdf Specula.pdf
-	while inotifywait ./ -e close_write; do pandoc $(FILES) -o Specula.pdf --from markdown --template eisvogel --listings; done
+html: $(FILES)
+	mdbook build
 
-gitbook:
-	gitbook serve
+watch: pbr.pdf
+	pdf pbr.pdf
+	while inotifywait ./src; do pandoc $(filter-out ./src/SUMMARY.md, $(shell find ./src -name "*.md" | sort -V)) -o pbr.pdf --template eisvogel --listings; done
 
-Specula.pdf: $(FILES)
-	pandoc $(FILES) -o Specula.pdf --from markdown --template eisvogel --listings
+serve: $(FILES)
+	mdbook serve
+
+pbr.pdf: $(FILES)
+	pandoc $(FILES) -o $@ --template eisvogel --listings
+
 
