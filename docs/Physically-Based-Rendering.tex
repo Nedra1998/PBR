@@ -1,0 +1,185 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\date{}
+
+\begin{document}
+\frontmatter
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\mainmatter
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+Physically based rendering techniques attempt to simulate reality and utilize
+physics to model the interactions with light.
+
+\hypertarget{literate-programming}{%
+\section{Literate Programming}\label{literate-programming}}
+
+Literate programming is a system where the documentation and the code are
+written in a single document, then a tool extracts and formats the
+documentation, and a different tool extracts and compiles the code.
+
+Each function can be deconstructed into fragments of the form \texttt{\textless{}Fragment\ Name\textgreater{}}. Then these fragments can be referenced later in book.
+
+\begin{verbatim}
+<Function Defintions> ==
+  void InitGlobals() {
+    <Initalize Global Variables>
+  }
+\end{verbatim}
+
+Then later in the documentation, when the variables are defined, we can then
+write
+
+\begin{verbatim}
+<Initalize Global Variables> == size = 13;
+\end{verbatim}
+
+Then when another variable is defined, we are able to append that variable into
+the fragment like so
+
+\begin{verbatim}
+<Initalize Global Variables> += value = true;
+\end{verbatim}
+
+Most of the code in the book is decomposed in this way, to produce more
+readable documentation.
+
+\hypertarget{indexing-and-cross-referencing}{%
+\subsection{Indexing and Cross-Referencing}\label{indexing-and-cross-referencing}}
+
+Indices in the page margins give page numbers where the functions, variables and
+methods are defined. Induces at the end of the book collect all of these
+identifiers so that it is possible to find definitions by name.
+
+\hypertarget{photorealistic-rendering-and-the-ray-tracing-algorithm}{%
+\section{Photorealistic Rendering and the Ray-Tracing Algorithm}\label{photorealistic-rendering-and-the-ray-tracing-algorithm}}
+
+Ray-tracing is the basis of photorealistic rendering, it follows the path of a
+ray of light as it interacts with the objects of the scene. Each ray-tracer
+must simulate at least the following properties.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Cameras:} A camera determine how and from where the scene is being viewed,
+  many rendering systems generate rays starting at the camera.
+\item
+  \emph{Ray-object intersections:} It is necessary to determine when a ray
+  intersects and object, and useful to also find the surface normal or its
+  material. Most implementations have a method for testing multiple
+  intersections at once, and finding the nearest.
+\item
+  \emph{Light sources:} Ray-tracers must model the distribution of light throughout
+  the scene, including the locations of the lights themselves.
+\item
+  \emph{Visibility:} We must know wherever there is an uninterrupted path between a
+  point and a light source. This is relatively easy for ray-tracers.
+\item
+  \emph{Surface scattering:} Each object must provide a description of its
+  appearance, including how light interacts with the object's surface, and
+  how it scatters light. This is usually parametrized, so that many different
+  appearances can be modeled.
+\item
+  \emph{Indirect light transport:} Light can arrive at a surface after bouncing off
+  of, or going though other surfaces, thus it is usually necessary to trace
+  additional rays originating form the surface to capture this.
+\item
+  \emph{Ray propagation:} Rays of light will propagate differently between a vacuum,
+  glass, smoke, fog and other mediums. We need to be able to model these
+  appropriately.
+\end{itemize}
+
+\hypertarget{cameras}{%
+\subsection{Cameras}\label{cameras}}
+
+As with physical camera technology, we will begin by simulating a pinhole
+camera. For our case, we will place the film plane in front of the pinhole. In
+this case, we will refer to the pinhole as the \emph{eye}. We will call the area
+that will be imaged by the eye that is in front of the film plane, as the
+viewing volume.
+
+Now the process of determining the color at each point on the image begins. In
+a pinhole camera, the only light that effects the film, is the ray that travels
+in through the pinhole and hits the film. In our model of a camera, we will use
+the eye as the origin for a ray, and the vector from the eye to the film plane
+as the direction. Each of these rays will then correspond to the light for a
+single point in the image.
+
+More complex models of a camera can be constructed, using lenses to simulate
+more modern cameras.
+
+\hypertarget{ray-object-intersections}{%
+\subsection{Ray-Object Intersections}\label{ray-object-intersections}}
+
+Each time the camera generates a ray, the first task is to calculate which
+object, if any, that ray intersects first and where the intersection occurs.
+This will be the visible point for this ray, and we will want to simulate the
+interaction of light with the object at this point. To do this, we will test
+the ray for intersection against all object, and select the one that the ray
+intersects first. Given a ray \(r\), we write:
+\[
+r(t)=o+t\mathbf{d},
+\]
+where \(o\) is the ray's origin, \(\mathbb{d}\) is the ray's direction, and
+\(t\) is a parameter whose range is \((0,\infty)\).
+
+\backmatter
+\end{document}

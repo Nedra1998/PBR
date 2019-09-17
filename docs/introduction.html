@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Introduction | Physically-Based-Rendering.utf8.md</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Introduction | Physically-Based-Rendering.utf8.md" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Introduction | Physically-Based-Rendering.utf8.md" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="01-introduction.html"><a href="#introduction"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="01-introduction.html"><a href="#literate-programming"><i class="fa fa-check"></i><b>1.1</b> Literate Programming</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="01-introduction.html"><a href="#indexing-and-cross-referencing"><i class="fa fa-check"></i><b>1.1.1</b> Indexing and Cross-Referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="01-introduction.html"><a href="#photorealistic-rendering-and-the-ray-tracing-algorithm"><i class="fa fa-check"></i><b>1.2</b> Photorealistic Rendering and the Ray-Tracing Algorithm</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="01-introduction.html"><a href="#cameras"><i class="fa fa-check"></i><b>1.2.1</b> Cameras</a></li>
+<li class="chapter" data-level="1.2.2" data-path="01-introduction.html"><a href="#ray-object-intersections"><i class="fa fa-check"></i><b>1.2.2</b> Ray-Object Intersections</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Physically based rendering techniques attempt to simulate reality and utilize
+physics to model the interactions with light.</p>
+<div id="literate-programming" class="section level2">
+<h2><span class="header-section-number">1.1</span> Literate Programming</h2>
+<p>Literate programming is a system where the documentation and the code are
+written in a single document, then a tool extracts and formats the
+documentation, and a different tool extracts and compiles the code.</p>
+<p>Each function can be deconstructed into fragments of the form <code>&lt;Fragment Name&gt;</code>. Then these fragments can be referenced later in book.</p>
+<pre><code>&lt;Function Defintions&gt; ==
+  void InitGlobals() {
+    &lt;Initalize Global Variables&gt;
+  }</code></pre>
+<p>Then later in the documentation, when the variables are defined, we can then
+write</p>
+<pre><code>&lt;Initalize Global Variables&gt; == size = 13;</code></pre>
+<p>Then when another variable is defined, we are able to append that variable into
+the fragment like so</p>
+<pre><code>&lt;Initalize Global Variables&gt; += value = true;</code></pre>
+<p>Most of the code in the book is decomposed in this way, to produce more
+readable documentation.</p>
+<div id="indexing-and-cross-referencing" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Indexing and Cross-Referencing</h3>
+<p>Indices in the page margins give page numbers where the functions, variables and
+methods are defined. Induces at the end of the book collect all of these
+identifiers so that it is possible to find definitions by name.</p>
+</div>
+</div>
+<div id="photorealistic-rendering-and-the-ray-tracing-algorithm" class="section level2">
+<h2><span class="header-section-number">1.2</span> Photorealistic Rendering and the Ray-Tracing Algorithm</h2>
+<p>Ray-tracing is the basis of photorealistic rendering, it follows the path of a
+ray of light as it interacts with the objects of the scene. Each ray-tracer
+must simulate at least the following properties.</p>
+<ul>
+<li><em>Cameras:</em> A camera determine how and from where the scene is being viewed,
+many rendering systems generate rays starting at the camera.</li>
+<li><em>Ray-object intersections:</em> It is necessary to determine when a ray
+intersects and object, and useful to also find the surface normal or its
+material. Most implementations have a method for testing multiple
+intersections at once, and finding the nearest.</li>
+<li><em>Light sources:</em> Ray-tracers must model the distribution of light throughout
+the scene, including the locations of the lights themselves.</li>
+<li><em>Visibility:</em> We must know wherever there is an uninterrupted path between a
+point and a light source. This is relatively easy for ray-tracers.</li>
+<li><em>Surface scattering:</em> Each object must provide a description of its
+appearance, including how light interacts with the object’s surface, and
+how it scatters light. This is usually parametrized, so that many different
+appearances can be modeled.</li>
+<li><em>Indirect light transport:</em> Light can arrive at a surface after bouncing off
+of, or going though other surfaces, thus it is usually necessary to trace
+additional rays originating form the surface to capture this.</li>
+<li><em>Ray propagation:</em> Rays of light will propagate differently between a vacuum,
+glass, smoke, fog and other mediums. We need to be able to model these
+appropriately.</li>
+</ul>
+<div id="cameras" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Cameras</h3>
+<p>As with physical camera technology, we will begin by simulating a pinhole
+camera. For our case, we will place the film plane in front of the pinhole. In
+this case, we will refer to the pinhole as the <em>eye</em>. We will call the area
+that will be imaged by the eye that is in front of the film plane, as the
+viewing volume.</p>
+<p>Now the process of determining the color at each point on the image begins. In
+a pinhole camera, the only light that effects the film, is the ray that travels
+in through the pinhole and hits the film. In our model of a camera, we will use
+the eye as the origin for a ray, and the vector from the eye to the film plane
+as the direction. Each of these rays will then correspond to the light for a
+single point in the image.</p>
+<p>More complex models of a camera can be constructed, using lenses to simulate
+more modern cameras.</p>
+</div>
+<div id="ray-object-intersections" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Ray-Object Intersections</h3>
+<p>Each time the camera generates a ray, the first task is to calculate which
+object, if any, that ray intersects first and where the intersection occurs.
+This will be the visible point for this ray, and we will want to simulate the
+interaction of light with the object at this point. To do this, we will test
+the ray for intersection against all object, and select the one that the ray
+intersects first. Given a ray <span class="math inline">\(r\)</span>, we write:
+<span class="math display">\[
+r(t)=o+t\mathbf{d},
+\]</span>
+where <span class="math inline">\(o\)</span> is the ray’s origin, <span class="math inline">\(\mathbb{d}\)</span> is the ray’s direction, and
+<span class="math inline">\(t\)</span> is a parameter whose range is <span class="math inline">\((0,\infty)\)</span>.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Physically-Based-Rendering.pdf", "Physically-Based-Rendering.epub", "Physically-Based-Rendering.mobi"],
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
