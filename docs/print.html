@@ -190,7 +190,58 @@ readable documentation.</p>
 <p>Indices in the page margins give page numbers where the functions, variables and
 methods are defined. Induces at the end of the book collect all of these
 identifiers so that it is possible to find definitions by name.</p>
-<h2><a class="header" href="#photorealistic-rendering-the-the-ray-tracing-algorithm" id="photorealistic-rendering-the-the-ray-tracing-algorithm">Photorealistic Rendering the the Ray-Tracing Algorithm</a></h2>
+<h2><a class="header" href="#photorealistic-rendering-and-the-ray-tracing-algorithm" id="photorealistic-rendering-and-the-ray-tracing-algorithm">Photorealistic Rendering and the Ray-Tracing Algorithm</a></h2>
+<p>Ray-tracing is the basis of photorealistic rendering, it follows the path of a
+ray of light as it interacts with the objects of the scene. Each ray-tracer
+must simulate at least the following properties.</p>
+<ul>
+<li><em>Cameras:</em> A camera determine how and from where the scene is being viewed,
+many rendering systems generate rays starting at the camera.</li>
+<li><em>Ray-object intersections:</em> It is necessary to determine when a ray
+intersects and object, and useful to also find the surface normal or its
+material. Most implementations have a method for testing multiple
+intersections at once, and finding the nearest.</li>
+<li><em>Light sources:</em> Ray-tracers must model the distribution of light throughout
+the scene, including the locations of the lights themselves.</li>
+<li><em>Visibility:</em> We must know wherever there is an uninterrupted path between a
+point and a light source. This is relatively easy for ray-tracers.</li>
+<li><em>Surface scattering:</em> Each object must provide a description of its
+appearance, including how light interacts with the object’s surface, and
+how it scatters light. This is usually parametrized, so that many different
+appearances can be modeled.</li>
+<li><em>Indirect light transport:</em> Light can arrive at a surface after bouncing off
+of, or going though other surfaces, thus it is usually necessary to trace
+additional rays originating form the surface to capture this.</li>
+<li><em>Ray propagation:</em> Rays of light will propagate differently between a vacuum,
+glass, smoke, fog and other mediums. We need to be able to model these
+appropriately.</li>
+</ul>
+<h3><a class="header" href="#cameras" id="cameras">Cameras</a></h3>
+<p>As with physical camera technology, we will begin by simulating a pinhole
+camera. For our case, we will place the film plane in front of the pinhole. In
+this case, we will refer to the pinhole as the <em>eye</em>. We will call the area
+that will be imaged by the eye that is in front of the film plane, as the
+viewing volume.</p>
+<p>Now the process of determining the color at each point on the image begins. In
+a pinhole camera, the only light that effects the film, is the ray that travels
+in through the pinhole and hits the film. In our model of a camera, we will use
+the eye as the origin for a ray, and the vector from the eye to the film plane
+as the direction. Each of these rays will then correspond to the light for a
+single point in the image.</p>
+<p>More complex models of a camera can be constructed, using lenses to simulate
+more modern cameras.</p>
+<h3><a class="header" href="#ray-object-intersections" id="ray-object-intersections">Ray-Object Intersections</a></h3>
+<p>Each time the camera generates a ray, the first task is to calculate which
+object, if any, that ray intersects first and where the intersection occurs.
+This will be the visible point for this ray, and we will want to simulate the
+interaction of light with the object at this point. To do this, we will test
+the ray for intersection against all object, and select the one that the ray
+intersects first. Given a ray (r), we write:
+[
+r(t)=o+t\mathbf{d},
+]
+where (o) is the ray’s origin, (\mathbb{d}) is the ray’s direction, and
+(t) is a parameter whose range is ((0,\infty)).</p>
 <h2><a class="header" href="#pbrt-system-overview" id="pbrt-system-overview">pbrt: System Overview</a></h2>
 <h2><a class="header" href="#parallelization-of-pbrt" id="parallelization-of-pbrt">Parallelization of pbrt</a></h2>
 <h2><a class="header" href="#how-to-proceed-through-this-book" id="how-to-proceed-through-this-book">How to Proceed through This Book</a></h2>
