@@ -98,5 +98,125 @@ intersects first. Given a ray $r$, we write:
 $$
 r(t)=o+t\mathbf{d},
 $$
-where $o$ is the ray's origin, $\mathbb{d}$ is the ray's direction, and
-$t$ is a parameter whose range is $(0,\infty)$.
+where $o$ is the ray's origin, $\mathbb{d}$ is the ray's direction, and $t$ is
+a parameter whose range is $(0,\infty)$. We obtain a point along the ray, by
+specifying a value for $t$.
+
+It is easy to find the intersection between the ray $r$ and a surface defined
+by an implicit function $F(x,y,z)=0$. We substitute the ray equation into the
+implicit equation and solve for $t$.
+
+The reset of the algorithm requires information of the material for the
+surface, at the point of intersection, and some geometric information such as
+the normal to the surface at the point of intersection $\mathbf{n}$.
+
+Most scenes are constructed of many objects, and the brute force method of
+testing the intersection for all objects, quickly becomes slow. So a better
+method is to construct an _acceleration structure_ that quickly rejects whole
+groups of objects that the ray will not intersect with.
+
+### Light Distribution
+
+The ray-object intersection gives us point to be shaded, and some information
+about the local geometry. Out goal is to determine how much light is leaving
+this point in the direction of the camera, to do this, we must know how much
+light is _arriving_ at this point. 
+
+Using light sources, we will determine the _differential irradiance_ on a
+surface, from a given light source. This will be of the form
+$$
+dE=\frac{\Phi\cos\theta}{4\pi r^2},
+$$
+where $\Phi$ is the power associated with the light source, $r$ is the distance
+of the point from the light source, and $\theta$ is the angle between the
+surface normal and the ray from the light source.
+
+Since illumination is linear, scenes with multiple light sources are easily
+handled, by summing the contribution of each light source individually.
+
+### Visibility
+
+The description of light distribution is lacking in the component of _shadows_.
+Each light source will only contribute to the point being shaded if the path
+between the point and the light source is unobstructed.
+
+In a ray-tracer this is easily done using a _shadow ray_, which is a ray from
+the point in the direction of the light source. If the ray intersects objects
+with $t<r$, where $r$ is the distance to the light source, there we can
+conclude that there is an obstruction.
+
+### Surface Scattering
+
+We now have the location and the incident lighting. Now we must determine the
+amount of the incident light is _scattered_ off of the surface, and back along
+the ray that was initially sent from the camera to this point.
+
+Each object in the scene provides a _material_, which describes its appearance
+properties at each point on the surface. This description is given by the
+_bidirectional reflectance distribution function_ (BRDF). This tells up how
+much energy is reflected from an incoming direction $\omega_i$ to an outgoing
+direction $\omega_o$. We will write the BRDF at $p$ as
+$f_r\left(p,\omega_o,\omega_i\right)$. Now computing the amount of light $L$
+scattered back towards the camera will follow this process:
+
+```
+for each light:
+  if light is not blocked:
+    incident_light = light.L(point)
+    ammount_reflected = surface.BRDF(hit_point, camera_vector, light_vector)
+    L += amount_reflected * incident_light
+```
+
+In this case $L$ represents the _radiance_, a unit for measuring light that we
+will use much more.
+
+The concept of BRDF can be generalized to transmitted light(BTDF). A function
+that describes general scattering of light is called a _bidirectional
+scattering distribution function_ (BSDF). More complex yet is the _bidirectional
+subsurface scattering reflectance distribution function_ (BSSRDF), which models
+light that exits a surface at a different point than it enters.
+
+### Indirect Light Transport
+
+In the original paper on ray tracing the _recursive_ nature was emphasized.
+It is key to be able to reflect off of a mirror surface, and recursively invoke
+the ray-tracing routine to find the light arriving at the intersected point.
+
+In general the amount of light that reaches the camera from a point on an
+object is the sum of the light emitted by the object, and the amount of
+reflected light. The formalization of this is the _light transport equation_,
+which says that the outgoing radiance $L_o\left(p,\omega_o\right)$ from a point
+$p$ in direction $\omega_o$ is the emitted radiance at that point in that
+direction, $L_e\left(p,\omega_o\right)$, plus the incident radiance from all
+directions on the sphere $\mathcal{S}^2$ around $p$ scaled by the BSDF
+$f\left(p,\omega_o,\omega_i\right)$ and a cosine term:
+$$
+L_o\left(p,\omega_o\right)=L_e\left(p,\omega_o\right)+\int_{\mathcal{S}^2}f\left(p,\omega_o,\omega_i\right)L_i\left(p,\omega_i\right)\left|\cos\theta_i\right|d\omega_i
+(\#eq:lightTransportEquation)
+$$
+
+Whitted's algorithm simplifies this integral by ignoring all directions with
+the exception of the direction of light sources, and that of perfect
+reflection and refraction. Thus it turns this integral into a sum over a small
+number of directions. This method can be extended to capture more effects, by
+sampling many recursive rays near the perfect reflection.
+
+We can always recursively trace a ray when we hit an object. This will provide
+very realistic effects. It also means that each image location is associated
+with a tree of rays, each ray in the tree can have a _weight_ associated with
+it; this allows the modeling for not perfectly reflective surfaces.
+
+### Ray Propagation
+
+So far we have assumed that the rays are traveling in a vacuum, but in most
+cases, there will be some presence of a _participating media_. A participating
+medium can do one of two things to a ray.
+
+First a medium can _extinguish_ light, either by absorbing it or by scattering
+it in a different direction. We can model this by computing the _transmittance_
+$T$ between the ray origin and the intersection point.
+
+Second a medium can add light along the ray. This can happen if the medium
+emits light, or if the medium scatters light from other directions back along
+the ray. We can find this quantity by evaluating the _volume light transport
+equation_.
