@@ -36,6 +36,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
+  pdftitle={PBR Notes},
+  pdfauthor={Arden Rasmussen},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -48,263 +50,177 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 
+\title{PBR Notes}
+\author{Arden Rasmussen}
 \date{}
 
 \begin{document}
 \frontmatter
+\maketitle
 
 {
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
 \mainmatter
-\hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\hypertarget{tu-wien-rendering}{%
+\chapter{TU Wien Rendering}\label{tu-wien-rendering}}
 
-Physically based rendering techniques attempt to simulate reality and utilize
-physics to model the interactions with light.
+\hypertarget{radiometry-recap-light-attenuation}{%
+\chapter{Radiometry Recap, Light Attenuation}\label{radiometry-recap-light-attenuation}}
 
-\hypertarget{literate-programming}{%
-\section{Literate Programming}\label{literate-programming}}
+\hypertarget{radiometry-recap}{%
+\section{Radiometry Recap}\label{radiometry-recap}}
 
-Literate programming is a system where the documentation and the code are
-written in a single document, then a tool extracts and formats the
-documentation, and a different tool extracts and compiles the code.
+\textbf{What to measure in a simulation?}
 
-Each function can be deconstructed into fragments of the form \texttt{\textless{}Fragment\ Name\textgreater{}}. Then these fragments can be referenced later in book.
+\begin{description}
+\tightlist
+\item[Radiant flux (or power)]
+Total amount of energy passing through a surface (measured per second).
+\[ \Phi \left[W\right]\]
+\end{description}
 
-\begin{verbatim}
-<Function Defintions> ==
-  void InitGlobals() {
-    <Initalize Global Variables>
-  }
-\end{verbatim}
+It is not good to measurethe radiant flux , because it is the energy per
+surface, so a large radiant flux could either be
 
-Then later in the documentation, when the variables are defined, we can then
-write
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A lot of energy over a small surface.
+\item
+  A little energy over a large surface.
+\end{enumerate}
 
-\begin{verbatim}
-<Initalize Global Variables> == size = 13;
-\end{verbatim}
+This metric is ambiguious, and thus it is not good enough.
 
-Then when another variable is defined, we are able to append that variable into
-the fragment like so
+Lets comput the flux by unit area (irradiance).
+\[E\left[W/m^2\right]\]
 
-\begin{verbatim}
-<Initalize Global Variables> += value = true;
-\end{verbatim}
+This is still ambiguous, we haven't fixed the angle wihc the ligh arives to the
+surface. So
 
-Most of the code in the book is decomposed in this way, to produce more
-readable documentation.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A lot of energy in a huge angle.
+\item
+  A little energy in a small angle.
+\end{enumerate}
 
-\hypertarget{indexing-and-cross-referencing}{%
-\subsection{Indexing and Cross-Referencing}\label{indexing-and-cross-referencing}}
+will measure the same irradiance.
 
-Indices in the page margins give page numbers where the functions, variables and
-methods are defined. Induces at the end of the book collect all of these
-identifiers so that it is possible to find definitions by name.
+Compute the flux by unit area and unit angle(radiance).
+\[L\left[W/\left(m^2\cdot sr\right)\right]\]
 
-\hypertarget{photorealistic-rendering-and-the-ray-tracing-algorithm}{%
-\section{Photorealistic Rendering and the Ray-Tracing Algorithm}\label{photorealistic-rendering-and-the-ray-tracing-algorithm}}
+\emph{Note:} angle in more diemsions is called solid angle, for which the unit is
+steradians.
 
-Ray-tracing is the basis of photorealistic rendering, it follows the path of a
-ray of light as it interacts with the objects of the scene. Each ray-tracer
-must simulate at least the following properties.
+This is the measurement that we will be using to measure.
+
+\hypertarget{the-most-fundamental-question}{%
+\section{The most fundamental question}\label{the-most-fundamental-question}}
+
+\textbf{How much light exiss a surface point in a given direction?}
+
+The answer is given by Maxwell equations!
+
+In practice, we don't do this, it would be too complicated.
+
+The real solution is the rendering equation!
+
+\hypertarget{the-scalar-product}{%
+\section{The scalar product}\label{the-scalar-product}}
+
+\[
+\vec{a}\cdot\vec{b}\equiv||\vec{a}||\cdot||\vec{b}||\cos\theta
+\]
+
+We will usualy use vectors of unit length, so
+\[
+\vec{a}\cdot\vec{b}\equiv\cos\theta
+\]
+
+\hypertarget{terminology}{%
+\section{Terminology}\label{terminology}}
+
+\begin{figure}
+\centering
+\includegraphics{figures/02_1.png}
+\caption{Figure}
+\end{figure}
 
 \begin{itemize}
 \tightlist
 \item
-  \emph{Cameras:} A camera determine how and from where the scene is being viewed,
-  many rendering systems generate rays starting at the camera.
+  \(\vec{V}\) direction towards the viewer (eye,camera)
 \item
-  \emph{Ray-object intersections:} It is necessary to determine when a ray
-  intersects and object, and useful to also find the surface normal or its
-  material. Most implementations have a method for testing multiple
-  intersections at once, and finding the nearest.
+  \(\vec{N}\) surface normal
 \item
-  \emph{Light sources:} Ray-tracers must model the distribution of light throughout
-  the scene, including the locations of the lights themselves.
+  \(\vec{L}\) vector point towards the light source
 \item
-  \emph{Visibility:} We must know wherever there is an uninterrupted path between a
-  point and a light source. This is relatively easy for ray-tracers.
+  \(\vec{R}\) reflected ray direction
+  \(\vec{R}=\vec{L}-2\vec{N}\left(\vec{L}\cdot\vec{N}\right)\).
 \item
-  \emph{Surface scattering:} Each object must provide a description of its
-  appearance, including how light interacts with the object's surface, and
-  how it scatters light. This is usually parametrized, so that many different
-  appearances can be modeled.
-\item
-  \emph{Indirect light transport:} Light can arrive at a surface after bouncing off
-  of, or going though other surfaces, thus it is usually necessary to trace
-  additional rays originating form the surface to capture this.
-\item
-  \emph{Ray propagation:} Rays of light will propagate differently between a vacuum,
-  glass, smoke, fog and other mediums. We need to be able to model these
-  appropriately.
+  \(\theta_i,\theta_r\) incident and reflected angles
 \end{itemize}
 
-\hypertarget{cameras}{%
-\subsection{Cameras}\label{cameras}}
+Vectors are always pointing out form the point \(x\).
 
-As with physical camera technology, we will begin by simulating a pinhole
-camera. For our case, we will place the film plane in front of the pinhole. In
-this case, we will refer to the pinhole as the \emph{eye}. We will call the area
-that will be imaged by the eye that is in front of the film plane, as the
-viewing volume.
+\hypertarget{light-attenuation}{%
+\section{Light Attenuation}\label{light-attenuation}}
 
-Now the process of determining the color at each point on the image begins. In
-a pinhole camera, the only light that effects the film, is the ray that travels
-in through the pinhole and hits the film. In our model of a camera, we will use
-the eye as the origin for a ray, and the vector from the eye to the film plane
-as the direction. Each of these rays will then correspond to the light for a
-single point in the image.
-
-More complex models of a camera can be constructed, using lenses to simulate
-more modern cameras.
-
-\hypertarget{ray-object-intersections}{%
-\subsection{Ray-Object Intersections}\label{ray-object-intersections}}
-
-Each time the camera generates a ray, the first task is to calculate which
-object, if any, that ray intersects first and where the intersection occurs.
-This will be the visible point for this ray, and we will want to simulate the
-interaction of light with the object at this point. To do this, we will test
-the ray for intersection against all object, and select the one that the ray
-intersects first. Given a ray \(r\), we write:
+When the sun is directly above as in the prvious figure.
 \[
-r(t)=o+t\mathbf{d},
-\]
-where \(o\) is the ray's origin, \(\mathbb{d}\) is the ray's direction, and \(t\) is
-a parameter whose range is \((0,\infty)\). We obtain a point along the ray, by
-specifying a value for \(t\).
-
-It is easy to find the intersection between the ray \(r\) and a surface defined
-by an implicit function \(F(x,y,z)=0\). We substitute the ray equation into the
-implicit equation and solve for \(t\).
-
-The reset of the algorithm requires information of the material for the
-surface, at the point of intersection, and some geometric information such as
-the normal to the surface at the point of intersection \(\mathbf{n}\).
-
-Most scenes are constructed of many objects, and the brute force method of
-testing the intersection for all objects, quickly becomes slow. So a better
-method is to construct an \emph{acceleration structure} that quickly rejects whole
-groups of objects that the ray will not intersect with.
-
-\hypertarget{light-distribution}{%
-\subsection{Light Distribution}\label{light-distribution}}
-
-The ray-object intersection gives us point to be shaded, and some information
-about the local geometry. Out goal is to determine how much light is leaving
-this point in the direction of the camera, to do this, we must know how much
-light is \emph{arriving} at this point.
-
-Using light sources, we will determine the \emph{differential irradiance} on a
-surface, from a given light source. This will be of the form
-\[
-dE=\frac{\Phi\cos\theta}{4\pi r^2},
-\]
-where \(\Phi\) is the power associated with the light source, \(r\) is the distance
-of the point from the light source, and \(\theta\) is the angle between the
-surface normal and the ray from the light source.
-
-Since illumination is linear, scenes with multiple light sources are easily
-handled, by summing the contribution of each light source individually.
-
-\hypertarget{visibility}{%
-\subsection{Visibility}\label{visibility}}
-
-The description of light distribution is lacking in the component of \emph{shadows}.
-Each light source will only contribute to the point being shaded if the path
-between the point and the light source is unobstructed.
-
-In a ray-tracer this is easily done using a \emph{shadow ray}, which is a ray from
-the point in the direction of the light source. If the ray intersects objects
-with \(t<r\), where \(r\) is the distance to the light source, there we can
-conclude that there is an obstruction.
-
-\hypertarget{surface-scattering}{%
-\subsection{Surface Scattering}\label{surface-scattering}}
-
-We now have the location and the incident lighting. Now we must determine the
-amount of the incident light is \emph{scattered} off of the surface, and back along
-the ray that was initially sent from the camera to this point.
-
-Each object in the scene provides a \emph{material}, which describes its appearance
-properties at each point on the surface. This description is given by the
-\emph{bidirectional reflectance distribution function} (BRDF). This tells up how
-much energy is reflected from an incoming direction \(\omega_i\) to an outgoing
-direction \(\omega_o\). We will write the BRDF at \(p\) as
-\(f_r\left(p,\omega_o,\omega_i\right)\). Now computing the amount of light \(L\)
-scattered back towards the camera will follow this process:
-
-\begin{verbatim}
-for each light:
-  if light is not blocked:
-    incident_light = light.L(point)
-    ammount_reflected = surface.BRDF(hit_point, camera_vector, light_vector)
-    L += amount_reflected * incident_light
-\end{verbatim}
-
-In this case \(L\) represents the \emph{radiance}, a unit for measuring light that we
-will use much more.
-
-The concept of BRDF can be generalized to transmitted light(BTDF). A function
-that describes general scattering of light is called a \emph{bidirectional
-scattering distribution function} (BSDF). More complex yet is the \emph{bidirectional
-subsurface scattering reflectance distribution function} (BSSRDF), which models
-light that exits a surface at a different point than it enters.
-
-\hypertarget{indirect-light-transport}{%
-\subsection{Indirect Light Transport}\label{indirect-light-transport}}
-
-In the original paper on ray tracing the \emph{recursive} nature was emphasized.
-It is key to be able to reflect off of a mirror surface, and recursively invoke
-the ray-tracing routine to find the light arriving at the intersected point.
-
-In general the amount of light that reaches the camera from a point on an
-object is the sum of the light emitted by the object, and the amount of
-reflected light. The formalization of this is the \emph{light transport equation},
-which says that the outgoing radiance \(L_o\left(p,\omega_o\right)\) from a point
-\(p\) in direction \(\omega_o\) is the emitted radiance at that point in that
-direction, \(L_e\left(p,\omega_o\right)\), plus the incident radiance from all
-directions on the sphere \(\mathcal{S}^2\) around \(p\) scaled by the BSDF
-\(f\left(p,\omega_o,\omega_i\right)\) and a cosine term:
-\[
-L_o\left(p,\omega_o\right)=L_e\left(p,\omega_o\right)+\int_{\mathcal{S}^2}f\left(p,\omega_o,\omega_i\right)L_i\left(p,\omega_i\right)\left|\cos\theta_i\right|d\omega_i
-\label{eq:lightTransportEquation}
+\left(\vec{L}\cdot\vec{N}\right)\Phi=\cos0\Phi=\Phi
 \]
 
-Whitted's algorithm simplifies this integral by ignoring all directions with
-the exception of the direction of light sources, and that of perfect
-reflection and refraction. Thus it turns this integral into a sum over a small
-number of directions. This method can be extended to capture more effects, by
-sampling many recursive rays near the perfect reflection.
+If the sun is off to one side as in this figure if \(\alpha\approx45^\circ\).
 
-We can always recursively trace a ray when we hit an object. This will provide
-very realistic effects. It also means that each image location is associated
-with a tree of rays, each ray in the tree can have a \emph{weight} associated with
-it; this allows the modeling for not perfectly reflective surfaces.
+\begin{figure}
+\centering
+\includegraphics{figures/02_2.png}
+\caption{Figure}
+\end{figure}
 
-\hypertarget{ray-propagation}{%
-\subsection{Ray Propagation}\label{ray-propagation}}
+\[
+\left(\vec{L}\cdot\vec{N}\right)\Phi=\cos\alpha\Phi\approx 0.7\Phi
+\]
 
-So far we have assumed that the rays are traveling in a vacuum, but in most
-cases, there will be some presence of a \emph{participating media}. A participating
-medium can do one of two things to a ray.
+If the sun is near \(90^\circ\), as in this figure, where
+\(\alpha\approx90^\circ\).
 
-First a medium can \emph{extinguish} light, either by absorbing it or by scattering
-it in a different direction. We can model this by computing the \emph{transmittance}
-\(T\) between the ray origin and the intersection point.
+\begin{figure}
+\centering
+\includegraphics{figures/02_3.png}
+\caption{Figure}
+\end{figure}
 
-Second a medium can add light along the ray. This can happen if the medium
-emits light, or if the medium scatters light from other directions back along
-the ray. We can find this quantity by evaluating the \emph{volume light transport
-equation}.
+\[
+\left(\vec{L}\cdot\vec{N}\right)\Phi=\cos\alpha\Phi\approx 0
+\]
+
+Thus we can model the light attenuation using this dot product.
 
 \backmatter
 \end{document}
