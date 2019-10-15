@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=0.2]
+  \coordinate (S) at (-5,4.5);
+  \coordinate (O) at (0,0);
+  \draw[->,>=stealth] (S) -- (O);
+  \draw[->,>=stealth] (O) -- (2.853,0.927);
+  \draw[->,>=stealth] (O) -- (2.427,1.763);
+  \draw[->,>=stealth] (O) -- (1.763,2.427);
+  \draw[->,>=stealth] (O) -- (0.927,2.853);
+  \draw[->,>=stealth] (O) -- (-2.853,0.927);
+  \draw[->,>=stealth] (O) -- (-2.427,1.763);
+  \draw[->,>=stealth] (O) -- (-1.763,2.427);
+  \draw[->,>=stealth] (O) -- (-0.927,2.853);
+  \draw[->,>=stealth] (O) -- (0, 3);
+  \begin{scope}
+    \clip (-3,0) rectangle (3,3);
+    \draw[dashed] (0,0) circle (3);
+  \end{scope}
+  \draw[pattern=north west lines] (-5,0) rectangle (5,-0.2);
+\end{tikzpicture}
