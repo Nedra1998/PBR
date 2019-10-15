@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=0.4]
+  \coordinate (O) at (0,0);
+  \coordinate (S) at (-5,3);
+  \coordinate (RE) at (5,3);
+  \coordinate (RF) at (2,-3);
+  \coordinate (N) at (0,3);
+  \coordinate (NN) at (0,-3);
+  \draw[->,>=stealth,thick] (O) -- (S);
+  \draw[->,>=stealth] (O) -- (RE) node[right]{Reflection};
+  \draw[->,>=stealth,thick] (O) -- (RF) node[right]{Refraction};
+  \draw (NN)node[left]{$-\vec{N}$} -- (O) -- (N)node[left]{$\vec{N}$};
+
+  \pic [draw, -, "$\theta_i$", angle eccentricity=1.5] {angle = N--O--S};
+  \pic [draw, -, "$\theta_r$", angle eccentricity=1.5] {angle = RE--O--N};
+  \pic [draw, -, "$\theta_t$", angle eccentricity=1.5] {angle = NN--O--RF};
+
+  \draw (-5,0) -- (5,0);
+  \node[left] at (S) {\faSunO};
+  \node[above] at (S) {$\vec{L}$};
+  \node[above] at (RE) {$\vec{R}$};
+\end{tikzpicture}
