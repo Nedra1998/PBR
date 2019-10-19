@@ -291,6 +291,8 @@ INPUT /usr/share/texmf-dist/tex/latex/ifplatform/ifplatform.sty
 INPUT /usr/share/texmf-dist/tex/generic/oberdiek/catchfile.sty
 INPUT /usr/share/texmf-dist/tex/generic/oberdiek/catchfile.sty
 INPUT /dev/null
+INPUT pbr.w18
+INPUT pbr.w18
 INPUT /usr/share/texmf-dist/tex/generic/xstring/xstring.sty
 INPUT /usr/share/texmf-dist/tex/generic/xstring/xstring.sty
 INPUT /usr/share/texmf-dist/tex/generic/xstring/xstring.tex
@@ -308,6 +310,8 @@ INPUT /usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlib
 INPUT /usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryangles.code.tex
 INPUT /usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
 INPUT /usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+INPUT pbr.aex
+INPUT pbr.aex
 INPUT pbr.aux
 INPUT pbr.aux
 OUTPUT pbr.aux
@@ -353,6 +357,8 @@ INPUT ./pbr.out
 INPUT ./pbr.out
 OUTPUT pbr.out
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT sections/lecture_1.tex
+INPUT sections/lecture_1.tex
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
@@ -395,6 +401,14 @@ INPUT figures/05_2.tex
 INPUT figures/05_2.tex
 INPUT figures/05_3.tex
 INPUT figures/05_3.tex
+INPUT figures/06_1.tex
+INPUT figures/06_1.tex
+INPUT figures/06_2.tex
+INPUT figures/06_2.tex
+INPUT figures/06_3.tex
+INPUT figures/06_3.tex
+INPUT sections/lecture_2.tex
+INPUT sections/lecture_2.tex
 INPUT pbr.aux
 INPUT ./pbr.out
 INPUT ./pbr.out

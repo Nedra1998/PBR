@@ -1,21 +1,26 @@
-\BOOKMARK [1][-]{section.1}{1. Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{2. Radiometry \046 Light Attenuation}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{2.1. Radiometry Recap}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{2.2. The most fundamental question}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{2.3. The scalar product}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{2.4. Terminology}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{2.5. Light Attenuation}{section.2}% 7
-\BOOKMARK [1][-]{section.3}{3. BRDF models \046 The Rendering Equation}{}% 8
-\BOOKMARK [2][-]{subsection.3.1}{3.1. Materials}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.2}{3.2. BRDF}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.3}{3.3. BTDF}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.4}{3.4. BSDF}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.5}{3.5. BRDF Properties}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.6}{3.6. The Rendering Equation}{section.3}% 14
-\BOOKMARK [1][-]{section.4}{4. Diffuse, Specular, and Ambient Shading}{}% 15
-\BOOKMARK [2][-]{subsection.4.1}{4.1. BRDF types}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.2}{4.2. The Illumination Equation}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.3}{4.3. The Algorithm}{section.4}% 18
-\BOOKMARK [1][-]{section.5}{5. The Fresnel Equation and Schlick's Approximation}{}% 19
-\BOOKMARK [2][-]{subsection.5.1}{5.1. The Fresnel equation \(simplified\)}{section.5}% 20
-\BOOKMARK [1][-]{section.6}{6. Snell's Law and Total Internal Reflection}{}% 21
+\BOOKMARK [0][-]{part.1}{Part 1. Lecture 1}{}% 1
+\BOOKMARK [1][-]{section.1}{1. Introduction}{part.1}% 2
+\BOOKMARK [1][-]{section.2}{2. Radiometry \046 Light Attenuation}{part.1}% 3
+\BOOKMARK [2][-]{subsection.2.1}{2.1. Radiometry Recap}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{2.2. The most fundamental question}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{2.3. The scalar product}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.4}{2.4. Terminology}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.5}{2.5. Light Attenuation}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{3. BRDF models \046 The Rendering Equation}{part.1}% 9
+\BOOKMARK [2][-]{subsection.3.1}{3.1. Materials}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{3.2. BRDF}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{3.3. BTDF}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.4}{3.4. BSDF}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.5}{3.5. BRDF Properties}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.6}{3.6. The Rendering Equation}{section.3}% 15
+\BOOKMARK [1][-]{section.4}{4. Diffuse, Specular, and Ambient Shading}{part.1}% 16
+\BOOKMARK [2][-]{subsection.4.1}{4.1. BRDF types}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.2}{4.2. The Illumination Equation}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.3}{4.3. The Algorithm}{section.4}% 19
+\BOOKMARK [1][-]{section.5}{5. The Fresnel Equation and Schlick's Approximation}{part.1}% 20
+\BOOKMARK [2][-]{subsection.5.1}{5.1. The Fresnel equation \(simplified\)}{section.5}% 21
+\BOOKMARK [1][-]{section.6}{6. Snell's Law and Total Internal Reflection}{part.1}% 22
+\BOOKMARK [2][-]{subsection.6.1}{6.1. Snell's Law}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.2}{6.2. Total Internal Reflection}{section.6}% 24
+\BOOKMARK [0][-]{part.2}{Part 2. Lecture 2}{}% 25
+\BOOKMARK [1][-]{section.7}{7. Ray-Sphere Intersection}{part.2}% 26
