@@ -1,0 +1,43 @@
+digraph outline {
+rankdir=LR;
+splines=ortho;
+node [shape=box];
+subgraph cluster_shader {
+Sample;
+Evaluate;
+label="Shader";
+graph[style=dotted];
+}
+subgraph cluster_camera {
+View;
+label="Camera";
+graph[style=dotted];
+}
+subgraph cluster_object {
+Distance;
+Normal;
+label="Object";
+graph[style=dotted];
+}
+subgraph cluster_user {
+Arguments;
+Scene;
+label="User";
+graph[style=dotted];
+}
+Arguments->Renderer;
+Scene->Renderer;
+Arguments->View;
+Scene->View;
+View->Renderer;
+Renderer->RenderTile;
+Renderer->WriteImage;
+RenderTile->RayMarch;
+RenderTile->Normal;
+RenderTile->Sample;
+RenderTile->Evaluate;
+RenderTile->Renderer;
+RayMarch->Distance;
+RayMarch->RenderTile;
+
+}

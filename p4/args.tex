@@ -1,0 +1,91 @@
+\documentclass[../pbr.tex]{subfile}
+
+\begin{document}
+\section{Command Line Arguments}%
+\label{sec:command_line_arguments}
+
+The command line arguments can be used to define global scene parameters. These
+options primarily specify the output of the program, and can also control some
+global parameters for the renderer.
+
+\subsection{Options}%
+\label{sub:options}
+
+These options do not effect the renderer in any way, and are used for debugging
+information, and to get a help message.
+
+\begin{description}
+  \item[\texttt{-h,--help}] Displays built in help message.
+  \item[\texttt{-v}] Changes the verbosity of the output. Include more of this
+    flag for a more verbose output. The range is from $0-6$, where $6$ will
+    print all levels of messages.
+\end{description}
+
+\subsection{Output}%
+\label{sub:output}
+
+These options directly effect what image files are generated, and the type and
+size of these output images.
+
+\begin{description}
+    \item[\texttt{--aspect RATIO}] Defines the aspect ratio of the image to
+      generate. This must be of the form \texttt{w:h}, or \texttt{wxh}, any
+      other formats will cause an error. Here \texttt{w} and \texttt{h} can be
+      either floating point number or integer numbers, but must be positive.
+    \item[\texttt{-a,--albedo}] Enabling this flag will generate additional
+      files with the file path based upon the output file path
+      \texttt{"file-albedo.extension"}, which contain the unshaded colors of
+      the scene. This is primarily useful for denoising the image after
+      generation.
+    \item[\texttt{-d,--depth}] Enabling this flag will generate additional
+      files with the file path based upon the output file path
+      \texttt{"file-depth.extension"}, which contain the depth map of the
+      scene. This is primarily useful for denoising the image after generation.
+    \item[\texttt{-n,--normal}] Enabling this flag will generate additional
+      files with the file path based upon the output file path
+      \texttt{"file-normal.extension"}, which contain the normal directions of
+      the scene. This is primarily useful for denoising the image after
+      generation.
+    \item[\texttt{-o,--output FILE}] Output file and directory. If a single
+      frame is being rendered, then this will be the path to the file. If
+      multiple frames are being rendered, then this argument will be the
+      directory to generate the numbered files in and the extension for each
+      file. Valid extensions to generate are \texttt{png}, \texttt{jpeg}, and
+      \texttt{bmp}, these are the only extensions that have been defined for
+      the image generator, all other extensions will cause an error.
+    \item[\texttt{-r,--res,--resolution WIDTH}] This defines the output
+      resolution width of the image. Combined with the usage of
+      \texttt{--aspect}, this allows the construction of any size image file.
+\end{description}
+
+\subsection{Renderer}%
+\label{sub:renderer}
+
+These options effect the renderer, and can greatly improve or hurt the
+performance or can change how the output looks.
+
+\begin{description}
+  \item[\texttt{-b,--bounces NUM}] This variable controls the minimum number of
+    bounces that the renderer will simulate. More bounces will produce a more
+    realistic result, but will also significantly slow down the simulation.
+    Note that this only defines the minimum number of bounces, most rays will
+    bounce $5-10$ times more than this value. This defaults to $10$.
+  \item[\texttt{-f,--fov FOV}] This defines the horizontal field of view for
+    the generated image. The vertical field of view is calculated based upon
+    the aspect ratio. For this argument \texttt{FOV} must be a floating point
+    number, representing the radians for the field of view. This argument
+    defaults to $45^\circ$.
+  \item[\texttt{--no-denoise}] This flag will disable the built in denoiser.
+    Note that has not yet been implemented, no denoiser will be used.
+  \item[\texttt{-s,--spp SAMPLES}] This will determine the number of samples to
+    render for each pixel of the image. A higher value produces significantly
+    better resulting images, but will greatly increase the render time. This
+    value defaults to $16$.
+  \item[\texttt{-t,--tile SIZE}] This argument defines the size of the tile,
+    and consequently the maximum number threads to use. Each rendered image is
+    divided into multiple tiles, and this argument defines the size of the
+    tile. This defaults to $16$, meaning that each tile is $16\times 16$
+    pixels.
+\end{description}
+
+\end{document}

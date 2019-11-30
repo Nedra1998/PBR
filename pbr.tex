@@ -1,0 +1,73 @@
+\documentclass[10pt]{armath}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{todonotes}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{subfiles}
+\usepackage{longtable}
+\usepackage[pdf]{graphviz}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{minted}
+
+\title{Physically Based Rendering}
+\author{Arden Rasmussen}
+\date{\today}
+
+\numberwithin{equation}{section}
+\newcommand{\hdiv}[3]{
+  \vspace{#1}%
+  \noindent\rule{\textwidth}{#2}%
+  \vspace{#3}%
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  Physically Based Rendering (PBR) is the method for rendering computer
+  generated scenes, in a way that is intended to match that of reality. The
+  primary goal of a PBR system, is to simulate every ray of light individually.
+  The goal of the system that is described in this paper is to make a PBR
+  system with extremely simple user interface. The library and executable is
+  available on Github\footnote{https://github.com/LuxAter/Specula}.
+\end{abstract}
+
+\newpage
+\hdiv{10pt}{0.5pt}{1pt}
+\part{Theory}%
+\label{prt:theory}
+\hdiv{1pt}{0.5pt}{10pt}
+
+\newpage
+\hdiv{10pt}{0.5pt}{1pt}
+\part{Practice}%
+\label{prt:practice}
+\hdiv{1pt}{0.5pt}{10pt}
+
+\subfile{p2/outline}
+
+\newpage
+\hdiv{10pt}{0.5pt}{1pt}
+\part{Analysis}%
+\label{prt:Analysis}
+\hdiv{1pt}{0.5pt}{10pt}
+
+\newpage
+\hdiv{10pt}{0.5pt}{1pt}
+\part{Usage}%
+\label{prt:Usage}
+\hdiv{1pt}{0.5pt}{10pt}
+
+\subfile{p4/args}
+\subfile{p4/file}
+
+\end{document}
