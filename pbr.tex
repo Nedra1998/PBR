@@ -12,6 +12,8 @@
 \usepackage{pgfplots}
 \usepackage{subfiles}
 \usepackage{longtable}
+\usepackage{fontawesome}
+\usepackage{verbatim}
 \usepackage[pdf]{graphviz}
 \usepackage[toc,page]{appendix}
 \usepackage[hidelinks]{hyperref}
@@ -28,17 +30,22 @@
   \noindent\rule{\textwidth}{#2}%
   \vspace{#3}%
 }
+\usepackage{relsize}
+
+\tikzset{fontscale/.style = {font=\relsize{#1}}}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
   Physically Based Rendering (PBR) is the method for rendering computer
-  generated scenes, in a way that is intended to match that of reality. The
-  primary goal of a PBR system, is to simulate every ray of light individually.
-  The goal of the system that is described in this paper is to make a PBR
-  system with extremely simple user interface. The library and executable is
-  available on Github\footnote{https://github.com/LuxAter/Specula}.
+  generated scenes, in a way that is intended to mimic that of reality. The
+  primary goal of a PBR system, is to simulate every ray of light and its
+  interaction with the scene.  The goal of the system that is described in this
+  paper is to make a PBR system with extremely simple user interface, and one
+  that uses the method of ray marching. The library and executable are open
+  source and are available on
+  Github\footnote{\url{https://github.com/LuxAter/Specula}}.
 \end{abstract}
 
 \newpage
@@ -47,6 +54,10 @@
 \label{prt:theory}
 \hdiv{1pt}{0.5pt}{10pt}
 
+\subfile{p1/light1}
+\subfile{p1/camera}
+\subfile{p1/marching}
+
 \newpage
 \hdiv{10pt}{0.5pt}{1pt}
 \part{Practice}%
@@ -54,6 +65,7 @@
 \hdiv{1pt}{0.5pt}{10pt}
 
 \subfile{p2/outline}
+\subfile{p2/user}
 
 \newpage
 \hdiv{10pt}{0.5pt}{1pt}

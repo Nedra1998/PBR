@@ -1,0 +1,10 @@
+# Fdb version 3
+["pdflatex"] 1575146623 "camera.tex" "camera.pdf" "camera" 1575146623
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1572595918 33301 a3134070eacafb10b1f371612ce2650d ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1574224967 8044940 fc9c7905a075846fcb63e804b6cb4101 ""
+  "camera.aux" 1575146623 8 a94a2480d3289e625eea47cd1b285758 ""
+  "camera.tex" 1575146545 10045 27349d1ce42ffd26795f9306dd1d920b ""
+  "subfile.cls" 0 -1 0 ""
+  (generated)
+  "camera.pdf"
+  "camera.log"

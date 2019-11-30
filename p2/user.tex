@@ -1,0 +1,91 @@
+\documentclass[../pbr.tex]{subfile}
+
+\begin{document}
+\section{User Control}%
+\label{sec:user_control}
+
+The user controls were a critical component of the Specula library. One of the
+key goals of the library was to be easily used, and remove as many complications
+as possible from the process of creating a scene. The balance from providing
+the user with all the power provided by a path marcher, while at the same time
+creating a simple system was remedied, by allowing the user direct access to
+the core library, and developing an interface system that handles most of the
+boilerplate code.
+
+\subsection{Command Line Arguments}%
+\label{sub:command_line_arguments}
+
+This is the first method that the user will interact with the renderer, is
+through the command line arguments. To develop this, Specula makes use of an
+open source library CLI11\footnote{\url{https://github.com/CLIUtils/CLI11}}.
+This library provides a generic command line argument parser, and several
+validators that the code makes use of. The validators are used to restrict the
+types of values that can be entered, thus restricting the arguments to sensible
+values.
+
+The CLI11 library provides most of the validators, such as an
+\mintinline{cpp}{CLI::ExistingFile} and \mintinline{cpp}{CLI::PositiveNumber}
+validators. However, for some arguments a more generalizable validator was
+required, so using the inheritance of the base validator
+(\mintinline{cpp}{CLI::Validator}), the implementation of a
+\mintinline{cpp}{RegexValidator} was made. The regex validator takes a regular
+expression at construction, and will test the users input against that pattern,
+and if the input fails the match the pattern, then an error is thrown.
+
+Parsing the command line arguments is the first step that happens in the
+entirety of the code, this way if an argument is invalid then the program
+exists before processing anything. Once these arguments have been parsed, then
+they can be used throughout the rest of the process, by any component in the
+executable. It is important to note that is is entirely separated from all of
+the library code. This means that it is possible to utilize the library without
+including this system for parsing command line arguments.
+
+The specifics of the command line arguments are further described in Section
+\ref{sec:command_line_arguments}.
+
+\subsection{Scene Description}%
+\label{sub:scene_description}
+
+The primary form of interface that the user will have with the library, is with
+the scene definition script. The scene definition script is specified at run
+time, and is a \texttt{Lua} script that the user uses to define the scene's
+geometry and properties.
+
+Having the scene defined in a \texttt{Lua} script, means that all of
+\texttt{Lua}'s standard libraries are available to the user, and the scene
+description can be generated at runtime through the script. The choice to use
+\texttt{Lua} was primarily based upon its ease of integration with
+\texttt{C/C++}, and its performance. \texttt{Lua} usually executes faster than
+most scripting languages, and there are further improvements that can be made
+to improve the performance even more.
+
+To integrate the existing libraries API with the Lua scripting language, we use
+two open source tools. Firstly LuaJIT\footnote{\url{http://luajit.org/}} is a
+\textit{Just In Time} compiler for lua. This means that at execution time, the
+lua code is compiled into byte code for improved efficiency and performance.
+Secondly we use Sol2\footnote{\url{https://github.com/ThePhD/sol2}}. Sol2 is a
+library that abstracts the interface with the lua interpreter provided by
+LuaJIT. With these too tools, it is possible to provide almost all of the
+available function from the \texttt{C++} API to the lua interface. This means
+that all of the object primitives that have been defined for use, are also
+available as classes in the Lua interpreter.
+
+The key difference between the \texttt{C++} interface, and the \texttt{Lua}
+interface, is that when the Lua version of the \mintinline{lua}{render()} is
+called, then the process recognizes that the intention is to render a sequence
+of images, and handles that accordingly. If \mintinline{lua}{render()} is never
+called in the scene description script, then the process assumes that a single
+image was intended to be rendered, and renders the state of the scene after
+completing of the scene description execution. In the \texttt{C++} interface it
+is required that the \mintinline{cpp}{render()} function is explicitly called.
+
+Similarly to the command line arguments, all of the scene description and the
+\texttt{Lua} scripting is contained within the executable process, and will not
+directly interact with the library. This means that only the executable
+requires the LuaJIT and Sol2 libraries, which are of significant size, thus
+reducing the size of the core Specula library.
+
+The specifics of the API that is available in the scene description script is
+explained in Section \ref{sec:scene_file}.
+
+\end{document}

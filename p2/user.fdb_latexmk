@@ -1,0 +1,10 @@
+# Fdb version 3
+["pdflatex"] 1575093626 "user.tex" "user.pdf" "user" 1575093626
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1572595918 33301 a3134070eacafb10b1f371612ce2650d ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1574224967 8044940 fc9c7905a075846fcb63e804b6cb4101 ""
+  "subfile.cls" 0 -1 0 ""
+  "user.aux" 1575093614 8 a94a2480d3289e625eea47cd1b285758 ""
+  "user.tex" 1575093625 1469 b9ceedc3bf059d4f2abf6e86b723f60e ""
+  (generated)
+  "user.log"
+  "user.pdf"

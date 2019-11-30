@@ -2,15 +2,11 @@ digraph outline {
 rankdir=LR;
 splines=ortho;
 node [shape=box];
+subgraph cluster_library {
 subgraph cluster_shader {
 Sample;
 Evaluate;
 label="Shader";
-graph[style=dotted];
-}
-subgraph cluster_camera {
-View;
-label="Camera";
 graph[style=dotted];
 }
 subgraph cluster_object {
@@ -19,11 +15,27 @@ Normal;
 label="Object";
 graph[style=dotted];
 }
+subgraph cluster_camera {
+View;
+label="Camera";
+graph[style=dotted];
+}
+Renderer;
+WriteImage;
+RenderTile;
+RayMarch;
+label="Library";
+graph[style=dashed];
+}
+subgraph cluster_executable {
 subgraph cluster_user {
 Arguments;
 Scene;
 label="User";
 graph[style=dotted];
+}
+label="Executable";
+graph[style=dashed];
 }
 Arguments->Renderer;
 Scene->Renderer;

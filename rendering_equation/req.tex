@@ -1,0 +1,73 @@
+\documentclass[10pt]{armath}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{enumitem}
+
+\title{Rendering Equation and BSDF}
+\author{Arden Rasmussen}
+\date{\today}
+
+\newcommand{\lp}{\left(}
+  \newcommand{\rp}{\right)}
+\newcommand{\lv}{\left|}
+\newcommand{\rv}{\right|}
+\newcommand{\lvv}{\left\Vert}
+\newcommand{\rvv}{\right\Vert}
+\renewcommand{\S}{\mathcal{S}}
+\renewcommand{\b}[1]{\mathbf{#1}}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\begin{document}
+\maketitle
+
+\section{Rendering Equation}%
+\label{sec:rendering_equation}
+
+\begin{align*}
+  L_o\lp\b{p},
+  \b{o}\rp=L_e\lp\b{p},\b{o}\rp+\int_{\S^2}f_s\lp\b{i},\b{o},\b{n}\rp
+  L_i\lp\b{p},\b{i}\rp\lv\b{i}\cdot\b{n}\rv d\b{i}
+\end{align*}
+
+\begin{description}
+  \item[$L_o$] The light going out of a point in a given direction.
+  \item[$L_e$] The light emmited from a point in a given direction.
+  \item[$Li$] The light comming into a point from a given direction.
+  \item[$\b{p}$] Location of point in space.
+  \item[$\S^2$] Is the unit sphere, containing all possible $\b{i}$.
+  \item[$\Omega$] Is the unit hemisphere centered around $\b{n}$.
+  \item[$\b{i}$] Is the direction of incident ray of light, for the most case
+    this will be the negative of the direction along which we just ray
+    traced/marched.
+  \item[$\b{o}$] Is the negative direction of the outgoing ray oflight, this will be the direction along which we send new rays for tracing.
+  \item[$\b{n}$] Is the surface normal at the point $\b{p}$.
+  \item[$f_s$] Is the BSDF given from the objects material.
+\end{description}
+
+\section{BSDF}%
+\label{sec:bsdf}
+
+\begin{align*}
+  f_s\lp\b{i},\b{o},\b{n}\rp=f_r\lp\b{i},\b{o},\b{n}\rp+f_t\lp\b{i},\b{o},\b{n}\rp
+\end{align*}
+
+\begin{align*}
+  f_r\lp\b{i},\b{o},\b{n}\rp&=\frac{F\lp\b{i},\b{h_r}\rp
+    G\lp\b{i},\b{o},\b{h_r}\rp
+    D\lp\b{h_r}\rp}{4\lv\b{i}\cdot\b{n}\rv\lv\b{o}\cdot\b{n}\rv}\\
+  f_t\lp\b{i},\b{o},\b{n}\rp&=\frac{\lv\b{i}\cdot\b{h_t}\rv\lv\b{o}\cdot\b{h_t}\rv}{\lv\b{i}\cdot\b{n}\rv\lv\b{o}\cdot\b{n}\rv}
+  \frac{\eta_o^2\lp1-F\lp\b{i},\b{h_t}\rp\rp G\lp\b{i},\b{o},\b{h_t}\rp
+    D\lp\b{h_t}\rp}{{\lp\eta_i\lp\b{i}\cdot\b{h_t}\rp+\eta_o\lp\b{o}\cdot\b{h_t}\rp\rp}^2}
+\end{align*}
+\begin{align*}
+  \b{h_r}&=\frac{\b{i}+\b{o}}{\lvv\b{i}+\b{o}\rvv}\\
+  \b{h_t}&=-\frac{\b{i}+\eta\b{o}}{\lvv\b{i}+\b{o}\rvv}
+\end{align*}
+\begin{description}
+  \item[$\eta_o$] Is the index of refraction medium of the outgoing light.
+  \item[$\eta_i$] Is the index of refraction medium of the incoming light.
+  \item[$\eta$] is the ratio of the IORs of the two media,
+    $\eta=\frac{\eta_o}{\eta_i}$. 
+\end{description}
+
+\end{document}

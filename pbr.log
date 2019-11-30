@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.19)  29 NOV 2019 17:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.11.19)  30 NOV 2019 13:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -530,6 +530,18 @@ Package: longtable 2019/02/06 v4.12 Multi-page Table package (DPC)
 \c@LT@tables=\count161
 \c@LT@chunks=\count162
 \LT@p@ftn=\toks48
+) (/usr/share/texmf-dist/tex/latex/fontawesome/fontawesome.sty
+Package: fontawesome 2016/05/15 v4.6.3.1 font awesome icons
+(/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+) (/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+) (/usr/share/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-generic.tex) (/usr/share/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-pdftex.tex)) (/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks49
+\verbatim@line=\toks50
+\verbatim@in@stream=\read2
 ) (/usr/share/texmf-dist/tex/latex/graphviz/graphviz.sty
 Package: graphviz 2013/08/15 v0.94 .dtx graphviz file
 ) (/usr/share/texmf-dist/tex/latex/appendix/appendix.sty
@@ -546,8 +558,7 @@ Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
@@ -573,8 +584,6 @@ Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
 Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
 Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
-) (/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
@@ -640,7 +649,7 @@ Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
 Package: fancyvrb 2019/10/22
 Style option: `fancyvrb' v3.3 <2019/10/22> (tvz)
 \FV@CodeLineNo=\count176
-\FV@InFile=\read2
+\FV@InFile=\read3
 \FV@TabBox=\box73
 \c@FancyVerbLine=\count177
 \FV@StepNumber=\count178
@@ -650,7 +659,7 @@ Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
 ) (/usr/share/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count179
-\output=\toks49
+\output=\toks51
 \linenoprevgraf=\count180
 \linenumbersep=\dimen262
 \linenumberwidth=\dimen263
@@ -721,32 +730,37 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 ) (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count266
-\float@exts=\toks50
+\float@exts=\toks52
 \float@box=\box79
-\@float@everytoks=\toks51
+\@float@everytoks=\toks53
 \@floatcapt=\box80
 )
-\minted@appexistsfile=\read3
+\minted@appexistsfile=\read4
 \minted@bgbox=\box81
 \minted@code=\write5
 \c@minted@FancyVerbLineTemp=\count267
 \c@minted@pygmentizecounter=\count268
-\@float@every@listing=\toks52
+\@float@every@listing=\toks54
 \c@listing=\count269
 )
 runsystem(mkdir -p _minted-pbr)...disabled (restricted).
 
 
-./pbr.tex:20: Package minted Error: You must invoke LaTeX with the -shell-escape flag.
+./pbr.tex:22: Package minted Error: You must invoke LaTeX with the -shell-escape flag.
 
 See the minted package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.20 
+l.22 
      
 Pass the -shell-escape flag to LaTeX. Refer to the minted.sty documentation for more information.
 
+(/usr/share/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+LaTeX Info: Redefining \larger on input line 150.
+LaTeX Info: Redefining \smaller on input line 151.
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -754,38 +768,38 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 runsystem(which pygmentize && touch pbr.aex)...disabled (restricted).
 
 
-./pbr.tex:32: Package minted Error: You must have `pygmentize' installed to use this package.
+./pbr.tex:37: Package minted Error: You must have `pygmentize' installed to use this package.
 
 See the minted package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.32 \begin{document}
+l.37 \begin{document}
                      
 Refer to the installation instructions in the minted documentation for more information.
 
 (./pbr.aux)
 \openout1 = `pbr.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -804,12 +818,12 @@ Package caption Info: End \AtBeginDocument code.
 \scratchbox=\box82
 \nofMPsegments=\count271
 \nofMParguments=\count272
-\everyMPshowfont=\toks53
+\everyMPshowfont=\toks55
 \MPscratchCnt=\count273
 \MPscratchDim=\dimen278
 \MPnumerator=\count274
 \makeMPintoPDFobject=\count275
-\everyMPtoPDFconversion=\toks54
+\everyMPtoPDFconversion=\toks56
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 (/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -824,10 +838,10 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into your preamble.
- on input line 32.
+ on input line 37.
 
 \AtBeginShipoutBox=\box83
-Package hyperref Info: Link coloring OFF on input line 32.
+Package hyperref Info: Link coloring OFF on input line 37.
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -835,59 +849,179 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count276
 )
-LaTeX Info: Redefining \ref on input line 32.
-LaTeX Info: Redefining \pageref on input line 32.
-LaTeX Info: Redefining \nameref on input line 32.
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
 (./pbr.out) (./pbr.out)
 \@outlinefile=\write6
 \openout6 = `pbr.out'.
 
 
-Class armath Warning: Abstract should precede \maketitle in AMS document classes; reported on input line 35.
+Class armath Warning: Abstract should precede \maketitle in AMS document classes; reported on input line 40.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./p2/outline.tex
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./p1/light1.tex
+LaTeX Font Info:    Trying to load font information for U+fontawesometwo on input line 19.
+(/usr/share/texmf-dist/tex/latex/fontawesome/ufontawesometwo.fd
+File: ufontawesometwo.fd 2016/05/22 Font definitions for U/fontawesometwo.
+)
+LaTeX Font Info:    Trying to load font information for U+fontawesomethree on input line 20.
+(/usr/share/texmf-dist/tex/latex/fontawesome/ufontawesomethree.fd
+File: ufontawesomethree.fd 2016/05/22 Font definitions for U/fontawesomethree.
+)) (./p1/camera.tex [2]
+LaTeX Font Info:    Trying to load font information for U+fontawesomeone on input line 37.
+(/usr/share/texmf-dist/tex/latex/fontawesome/ufontawesomeone.fd
+File: ufontawesomeone.fd 2016/05/22 Font definitions for U/fontawesomeone.
+)
+Overfull \hbox (1.63591pt too wide) in paragraph at lines 41--42
+ [] 
+ []
+
+
+Package relsize Warning: Font size 61.91544pt is too large.
+(relsize)                Using 20.74pt instead on input line 52.
+
+
+Overfull \hbox (12.6602pt too wide) in paragraph at lines 56--57
+ [] 
+ []
+
+
+Overfull \hbox (13.98148pt too wide) in paragraph at lines 71--72
+ [] 
+ []
+
+[3] [4]
+PGFPlots: reading {./scripts/spp_proof.csv}
+PGFPlots: reading {./scripts/spp_proof.csv}
+Missing character: There is no ; in font nullfont!
+) (./p1/marching.tex) [5] (./p2/outline.tex
 runsystem(dot -Tpdf -o outline.pdf outline.dot)...disabled (restricted).
 
-<outline.pdf, id=89, 523.9575pt x 443.6575pt>
+<outline.pdf, id=159, 541.02126pt x 454.69875pt>
 File: outline.pdf Graphic file (type pdf)
 <use outline.pdf>
 Package pdftex.def Info: outline.pdf  used on input line 13.
-(pdftex.def)             Requested size: 392.96716pt x 332.7423pt.
+(pdftex.def)             Requested size: 405.76494pt x 341.02322pt.
 \dotfile=\write7
 \openout7 = `outline.dot'.
 
 
-Overfull \hbox (32.96716pt too wide) in paragraph at lines 13--56
+Overfull \hbox (45.76494pt too wide) in paragraph at lines 13--68
  [][] 
  []
 
-[3 <./outline.pdf>]) [4] [5] (./p4/args.tex
+[6]) (./p2/user.tex [7 <./outline.pdf>]
+\openout5 = `pbr.pyg'.
+
+(./_minted-pbr/default-pyg-prefix.pygstyle) (./_minted-pbr/default.pygstyle) (./_minted-pbr/102D8780E6853860719F541F91B31E40254438351013F110D4C2D2AA03ADF754.pygtex)
+\openout5 = `pbr.pyg'.
+
+(./_minted-pbr/68065076399B729AF412F4690841F349254438351013F110D4C2D2AA03ADF754.pygtex)
+\openout5 = `pbr.pyg'.
+
+(./_minted-pbr/7564A0189869A0587DFF81872B3A03CE254438351013F110D4C2D2AA03ADF754.pygtex)
+\openout5 = `pbr.pyg'.
+
+(./_minted-pbr/3FB6DB1DDEB5180686C88D507EF3A126254438351013F110D4C2D2AA03ADF754.pygtex)
+Overfull \hbox (2.83301pt too wide) in paragraph at lines 26--34
+[]\OT1/cmr/m/n/10 The CLI11 li-brary pro-vides most of the val-ida-tors, such as an []
+ []
+
+\openout5 = `pbr.pyg'.
+
+runsystem(pygmentize -l lua -f latex -P commandprefix=PYG -F tokenmerge -o _minted-pbr/C218DF185F7150A824D5C911700818E5DB4F1C050A3865D7527E0AB0837E6E25.pygtex pbr.pyg)...disabled (restricted).
+
+
+./p2/user.tex:74: Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.74 ... version of the \mintinline{lua}{render()}
+                                                   is
+This could be caused by using -output-directory or -aux-directory 
+without setting minted's outputdir, or by using a build tool that 
+changes paths in ways minted cannot detect, 
+or using frozencache with a missing file.
+
+\openout5 = `pbr.pyg'.
+
+runsystem(pygmentize -l lua -f latex -P commandprefix=PYG -F tokenmerge -o _minted-pbr/C218DF185F7150A824D5C911700818E5DB4F1C050A3865D7527E0AB0837E6E25.pygtex pbr.pyg)...disabled (restricted).
+
+
+./p2/user.tex:76: Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.76 ...accordingly. If \mintinline{lua}{render()}
+                                                   is never
+This could be caused by using -output-directory or -aux-directory 
+without setting minted's outputdir, or by using a build tool that 
+changes paths in ways minted cannot detect, 
+or using frozencache with a missing file.
+
+\openout5 = `pbr.pyg'.
+
+runsystem(pygmentize -l cpp -f latex -P commandprefix=PYG -F tokenmerge -o _minted-pbr/C218DF185F7150A824D5C911700818E5254438351013F110D4C2D2AA03ADF754.pygtex pbr.pyg)...disabled (restricted).
+
+
+./p2/user.tex:80: Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.80 ...quired that the \mintinline{cpp}{render()}
+                                                   function is explicitly ca...
+This could be caused by using -output-directory or -aux-directory 
+without setting minted's outputdir, or by using a build tool that 
+changes paths in ways minted cannot detect, 
+or using frozencache with a missing file.
+
+[8]) [9] [10] (./p4/args.tex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 18.
-[6]) (./p4/file.tex) [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 73.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 73.
+[11]) (./p4/file.tex) [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 85.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
 (./pbr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 73.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 73.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 85.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
 Package rerunfilecheck Info: File `pbr.out' has not changed.
-(rerunfilecheck)             Checksum: 4D1AF490F7115201E00B73FF118EC276;542.
+(rerunfilecheck)             Checksum: D78FAAA2757D51FA3FC9D21970D42C60;1051.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+runsystem(rm pbr.pyg)...disabled (restricted).
+
  ) 
 Here is how much of TeX's memory you used:
- 32755 strings out of 492167
- 756223 string characters out of 6131557
- 998291 words of memory out of 5000000
- 36378 multiletter control sequences out of 15000+600000
- 9863 words of font info for 39 fonts, out of 8000000 for 9000
+ 35148 strings out of 492167
+ 798211 string characters out of 6131557
+ 2619582 words of memory out of 5000000
+ 38677 multiletter control sequences out of 15000+600000
+ 12369 words of font info for 48 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 68i,7n,98p,813b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,19n,110p,813b,2402s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on pbr.pdf (7 pages, 149226 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc}{/usr/share/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomethree.enc}{/usr/share/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.enc}</usr/share/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on pbr.pdf (12 pages, 272857 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 141 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 194 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 289 PDF objects out of 1000 (max. 8388607)
+ 239 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 
