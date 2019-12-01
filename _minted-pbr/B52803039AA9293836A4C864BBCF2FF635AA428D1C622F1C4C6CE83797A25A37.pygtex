@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kt}{float} \PYG{n}{sphere}\PYG{p}{(}\PYG{k+kt}{vec3} \PYG{n}{p}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{length}\PYG{p}{(}\PYG{n}{p}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{radius}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+\end{Verbatim}

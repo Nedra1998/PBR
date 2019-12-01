@@ -1,0 +1,232 @@
+\documentclass[../pbr.text]{subfile}
+
+\begin{document}
+\section{Distance Functions}%
+\label{sec:distance_functions}
+
+For the ray marching method, each object must have a function that given a
+point returns the distance from that point to the object. In this section we
+will provide distance functions for many primitives, and some formulas for
+combining primitives together into more complex shapes. Even more complex
+shapes can have a distance function such as more complex fractals.
+
+\subsection{Primitives}%
+\label{sub:primitives}
+
+All primitives are centered at the origin, any scaling translation or rotation
+must be done separately.
+
+\subsubsection{Sphere}%
+\label{ssub:sphere}
+\begin{minted}{glsl}
+  return length(p)-radius;
+\end{minted}
+
+\subsubsection{Box}%
+\label{ssub:box}
+\begin{minted}{glsl}
+  vec3 q = abs(p) - b;
+  return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
+\end{minted}
+
+\subsubsection{Round Box}%
+\label{ssub:round_box}
+\begin{minted}{glsl}
+  vec3 q = abs(p) - b;
+  return length(max(q,0.0)) + min(max(q.x,max(p.y,q.z)),0.0) - r;
+\end{minted}
+
+\subsubsection{Torus}%
+\label{ssub:torus}
+\begin{minted}{glsl}
+  vec2 q = vec2(length(p.xz)-t.x,p.y);
+  return length(q) - t.y;
+\end{minted}
+
+\subsubsection{Plane}%
+\label{ssub:plane}
+\begin{minted}{glsl}
+  return dot(p,n.xyz)) + n.w;
+\end{minted}
+
+\subsubsection{Cylinder}%
+\label{ssub:cylinder}
+\begin{minted}{glsl}
+  vec2 d = abs(vec2(length(p.xz),p.y)) - vec2(h,r);
+  return min(max(d.x, d.y), 0.0) + length(max(d, 0.0));
+\end{minted}
+
+\subsubsection{Rounded Cylinder}%
+\label{ssub:rounded_cylinder}
+\begin{minted}{glsl}
+  vec2 d = vec2(length(p.xz)-2.0*ra+rb, abs(p.y)-h);
+  return min(max(d.x, d.y), 0.0) + length(max(d, 0.0)) - rb;
+\end{minted}
+
+\subsubsection{Cone}%
+\label{ssub:cone}
+\begin{minted}{glsl}
+  vec2 q = vec2( length(p.xz), p.y );
+  vec2 k1 = vec2(r2,h);
+  vec2 k2 = vec2(r2-r1,2.0*h);
+  vec2 ca = vec2(q.x-min(q.x,(q.y<0.0)?r1:r2), abs(q.y)-h);
+  vec2 cb = q - k1 + k2*clamp( dot(k1-q,k2)/dot2(k2), 0.0, 1.0 );
+  float s = (cb.x<0.0 && ca.y<0.0) ? -1.0 : 1.0;
+  return s*sqrt( min(dot2(ca),dot2(cb)) );
+\end{minted}
+
+\subsubsection{Round Cone}%
+\label{ssub:round_cone}
+\begin{minted}{glsl}
+  vec2 q = vec2( length(p.xz), p.y );
+
+  float b = (r1-r2)/h;
+  float a = sqrt(1.0-b*b);
+  float k = dot(q,vec2(-b,a));
+
+  if( k < 0.0 ) return length(q) - r1;
+  if( k > a*h ) return length(q-vec2(0.0,h)) - r2;
+
+  return dot(q, vec2(a,b) ) - r1;
+\end{minted}
+
+\subsubsection{Triangle}%
+\label{ssub:triangle}
+\begin{minted}{glsl}
+  vec3 ba = b - a; vec3 pa = p - a;
+  vec3 cb = c - b; vec3 pb = p - b;
+  vec3 ac = a - c; vec3 pc = p - c;
+  vec3 nor = cross( ba, ac );
+
+  return sqrt(
+  (sign(dot(cross(ba,nor),pa)) +
+  sign(dot(cross(cb,nor),pb)) +
+  sign(dot(cross(ac,nor),pc))<2.0)
+  ?
+  min( min(
+  dot2(ba*clamp(dot(ba,pa)/dot2(ba),0.0,1.0)-pa),
+  dot2(cb*clamp(dot(cb,pb)/dot2(cb),0.0,1.0)-pb) ),
+  dot2(ac*clamp(dot(ac,pc)/dot2(ac),0.0,1.0)-pc) )
+  :
+  dot(nor,pa)*dot(nor,pa)/dot2(nor) );
+\end{minted}
+
+\subsubsection{Quad}%
+\label{ssub:quad}
+\begin{minted}{glsl}
+  vec3 ba = b - a; vec3 pa = p - a;
+  vec3 cb = c - b; vec3 pb = p - b;
+  vec3 dc = d - c; vec3 pc = p - c;
+  vec3 ad = a - d; vec3 pd = p - d;
+  vec3 nor = cross( ba, ad );
+
+  return sqrt(
+  (sign(dot(cross(ba,nor),pa)) +
+  sign(dot(cross(cb,nor),pb)) +
+  sign(dot(cross(dc,nor),pc)) +
+  sign(dot(cross(ad,nor),pd))<3.0)
+  ?
+  min( min( min(
+  dot2(ba*clamp(dot(ba,pa)/dot2(ba),0.0,1.0)-pa),
+  dot2(cb*clamp(dot(cb,pb)/dot2(cb),0.0,1.0)-pb) ),
+  dot2(dc*clamp(dot(dc,pc)/dot2(dc),0.0,1.0)-pc) ),
+  dot2(ad*clamp(dot(ad,pd)/dot2(ad),0.0,1.0)-pd) )
+  :
+  dot(nor,pa)*dot(nor,pa)/dot2(nor) );
+\end{minted}
+
+\subsection{Alterations}%
+\label{sub:alterations}
+
+It is possible to apply operation that will change the shape of the primitives,
+while retaining the exact euclidean metric to them.
+
+\subsubsection{Rounding}%
+\label{ssub:rounding}
+\begin{minted}{glsl}
+  return primative(p) - radius;
+\end{minted}
+
+\subsubsection{Onion}%
+\label{ssub:onion}
+\begin{minted}{glsl}
+  return abs(primative(p)) - thickness;
+\end{minted}
+
+\subsection{Combinations}%
+\label{sub:combinations}
+
+These function combine, carve, or intersect the different primitives. These
+function can take the result of any two distance functions we will denote these
+values as \texttt{d1} and \texttt{d2}.
+
+\subsubsection{Union}%
+\label{ssub:union}
+\begin{minted}{glsl}
+  return min(d1,d2);
+\end{minted}
+
+\subsubsection{Subtraction}%
+\label{ssub:subtraction}
+\begin{minted}{glsl}
+  return max(-d1,d2);
+\end{minted}
+
+\subsubsection{Intersection}%
+\label{ssub:intersection}
+\begin{minted}{glsl}
+  return max(d1,d2);
+\end{minted}
+
+\subsubsection{Smooth Union}%
+\label{ssub:smooth_union}
+\begin{minted}{glsl}
+  float h = clamp( 0.5 + 0.5*(d2-d1)/k, 0.0, 1.0 );
+  return mix( d2, d1, h ) - k*h*(1.0-h);
+\end{minted}
+
+\subsubsection{Smooth Subtraction}%
+\label{ssub:smooth_subtraction}
+\begin{minted}{glsl}
+  float h = clamp( 0.5 - 0.5*(d2+d1)/k, 0.0, 1.0 );
+  return mix( d2, -d1, h ) + k*h*(1.0-h);
+\end{minted}
+
+\subsubsection{Smooth Intersection}%
+\label{ssub:smooth_intersection}
+\begin{minted}{glsl}
+  float h = clamp( 0.5 - 0.5*(d2-d1)/k, 0.0, 1.0 );
+  return mix( d2, d1, h ) + k*h*(1.0-h);
+\end{minted}
+
+\subsection{Mandelbulb}%
+\label{sub:mandelbulb}
+
+Using the format of a distance function it is possible to generate more complex
+objects, like this example is the distance function to render the mandelbulb.
+\begin{minted}{glsl}
+  vec3 z = p;
+  float dr = 1.0;
+  float r = 0.0;
+  for (int i = 0; i < Iterations ; i++) {
+    r = length(z);
+    if (r>Bailout) break;
+
+    // convert to polar coordinates
+    float theta = acos(z.z/r);
+    float phi = atan(z.y,z.x);
+    dr =  pow( r, Power-1.0)*Power*dr + 1.0;
+
+    // scale and rotate the point
+    float zr = pow( r,Power);
+    theta = theta*Power;
+    phi = phi*Power;
+
+    // convert back to cartesian coordinates
+    z = zr*vec3(sin(theta)*cos(phi), sin(phi)*sin(theta), cos(theta));
+    z+=p;
+  }
+  return 0.5*log(r)*r/dr;
+\end{minted}
+
+\end{document}

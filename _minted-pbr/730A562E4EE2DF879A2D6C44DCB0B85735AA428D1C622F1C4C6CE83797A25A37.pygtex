@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kt}{vec2} \PYG{n}{d} \PYG{o}{=} \PYG{k+kt}{vec2}\PYG{p}{(}\PYG{n}{length}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{xz}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.0}\PYG{o}{*}\PYG{n}{ra}\PYG{o}{+}\PYG{n}{rb}\PYG{p}{,} \PYG{n}{abs}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{h}\PYG{p}{);}
+  \PYG{k}{return} \PYG{n}{min}\PYG{p}{(}\PYG{n}{max}\PYG{p}{(}\PYG{n}{d}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,} \PYG{n}{d}\PYG{p}{.}\PYG{n}{y}\PYG{p}{),} \PYG{l+m+mf}{0.0}\PYG{p}{)} \PYG{o}{+} \PYG{n}{length}\PYG{p}{(}\PYG{n}{max}\PYG{p}{(}\PYG{n}{d}\PYG{p}{,} \PYG{l+m+mf}{0.0}\PYG{p}{))} \PYG{o}{\PYGZhy{}} \PYG{n}{rb}\PYG{p}{;}
+\end{Verbatim}

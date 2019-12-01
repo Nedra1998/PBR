@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kt}{vec3} \PYG{n}{z} \PYG{o}{=} \PYG{n}{p}\PYG{p}{;}
+  \PYG{k+kt}{float} \PYG{n}{dr} \PYG{o}{=} \PYG{l+m+mf}{1.0}\PYG{p}{;}
+  \PYG{k+kt}{float} \PYG{n}{r} \PYG{o}{=} \PYG{l+m+mf}{0.0}\PYG{p}{;}
+  \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mo}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{Iterations} \PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n}{r} \PYG{o}{=} \PYG{n}{length}\PYG{p}{(}\PYG{n}{z}\PYG{p}{);}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{r}\PYG{o}{\PYGZgt{}}\PYG{n}{Bailout}\PYG{p}{)} \PYG{k}{break}\PYG{p}{;}
+
+    \PYG{c+c1}{// convert to polar coordinates}
+    \PYG{k+kt}{float} \PYG{n}{theta} \PYG{o}{=} \PYG{n}{acos}\PYG{p}{(}\PYG{n}{z}\PYG{p}{.}\PYG{n}{z}\PYG{o}{/}\PYG{n}{r}\PYG{p}{);}
+    \PYG{k+kt}{float} \PYG{n}{phi} \PYG{o}{=} \PYG{n}{atan}\PYG{p}{(}\PYG{n}{z}\PYG{p}{.}\PYG{n}{y}\PYG{p}{,}\PYG{n}{z}\PYG{p}{.}\PYG{n}{x}\PYG{p}{);}
+    \PYG{n}{dr} \PYG{o}{=}  \PYG{n}{pow}\PYG{p}{(} \PYG{n}{r}\PYG{p}{,} \PYG{n}{Power}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{o}{*}\PYG{n}{Power}\PYG{o}{*}\PYG{n}{dr} \PYG{o}{+} \PYG{l+m+mf}{1.0}\PYG{p}{;}
+
+    \PYG{c+c1}{// scale and rotate the point}
+    \PYG{k+kt}{float} \PYG{n}{zr} \PYG{o}{=} \PYG{n}{pow}\PYG{p}{(} \PYG{n}{r}\PYG{p}{,}\PYG{n}{Power}\PYG{p}{);}
+    \PYG{n}{theta} \PYG{o}{=} \PYG{n}{theta}\PYG{o}{*}\PYG{n}{Power}\PYG{p}{;}
+    \PYG{n}{phi} \PYG{o}{=} \PYG{n}{phi}\PYG{o}{*}\PYG{n}{Power}\PYG{p}{;}
+
+    \PYG{c+c1}{// convert back to cartesian coordinates}
+    \PYG{n}{z} \PYG{o}{=} \PYG{n}{zr}\PYG{o}{*}\PYG{k+kt}{vec3}\PYG{p}{(}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{theta}\PYG{p}{)}\PYG{o}{*}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{),} \PYG{n}{sin}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}\PYG{o}{*}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{theta}\PYG{p}{),} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{theta}\PYG{p}{));}
+    \PYG{n}{z}\PYG{o}{+=}\PYG{n}{p}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{l+m+mf}{0.5}\PYG{o}{*}\PYG{n}{log}\PYG{p}{(}\PYG{n}{r}\PYG{p}{)}\PYG{o}{*}\PYG{n}{r}\PYG{o}{/}\PYG{n}{dr}\PYG{p}{;}
+\end{Verbatim}

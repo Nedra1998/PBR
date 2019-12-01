@@ -17,8 +17,15 @@
 \usepackage[pdf]{graphviz}
 \usepackage[toc,page]{appendix}
 \usepackage[hidelinks]{hyperref}
-
+\usepackage{relsize}
 \usepackage{minted}
+
+\setminted[glsl]{
+  linenos=true,
+  frame=lines,
+  framesep=5pt,
+  fontsize=\footnotesize
+}
 
 \title{Physically Based Rendering}
 \author{Arden Rasmussen}
@@ -30,7 +37,6 @@
   \noindent\rule{\textwidth}{#2}%
   \vspace{#3}%
 }
-\usepackage{relsize}
 
 \tikzset{fontscale/.style = {font=\relsize{#1}}}
 
@@ -57,6 +63,7 @@
 \subfile{p1/light1}
 \subfile{p1/camera}
 \subfile{p1/marching}
+\subfile{p1/distance_functions}
 
 \newpage
 \hdiv{10pt}{0.5pt}{1pt}

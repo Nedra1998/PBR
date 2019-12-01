@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k}{return} \PYG{n}{abs}\PYG{p}{(}\PYG{n}{primative}\PYG{p}{(}\PYG{n}{p}\PYG{p}{))} \PYG{o}{\PYGZhy{}} \PYG{n}{thickness}\PYG{p}{;}
+\end{Verbatim}

@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kt}{vec3} \PYG{n}{ba} \PYG{o}{=} \PYG{n}{b} \PYG{o}{\PYGZhy{}} \PYG{n}{a}\PYG{p}{;} \PYG{k+kt}{vec3} \PYG{n}{pa} \PYG{o}{=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{n}{a}\PYG{p}{;}
+  \PYG{k+kt}{vec3} \PYG{n}{cb} \PYG{o}{=} \PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{;} \PYG{k+kt}{vec3} \PYG{n}{pb} \PYG{o}{=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{;}
+  \PYG{k+kt}{vec3} \PYG{n}{dc} \PYG{o}{=} \PYG{n}{d} \PYG{o}{\PYGZhy{}} \PYG{n}{c}\PYG{p}{;} \PYG{k+kt}{vec3} \PYG{n}{pc} \PYG{o}{=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{n}{c}\PYG{p}{;}
+  \PYG{k+kt}{vec3} \PYG{n}{ad} \PYG{o}{=} \PYG{n}{a} \PYG{o}{\PYGZhy{}} \PYG{n}{d}\PYG{p}{;} \PYG{k+kt}{vec3} \PYG{n}{pd} \PYG{o}{=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{n}{d}\PYG{p}{;}
+  \PYG{k+kt}{vec3} \PYG{n}{nor} \PYG{o}{=} \PYG{n}{cross}\PYG{p}{(} \PYG{n}{ba}\PYG{p}{,} \PYG{n}{ad} \PYG{p}{);}
+
+  \PYG{k}{return} \PYG{n}{sqrt}\PYG{p}{(}
+    \PYG{p}{(}\PYG{n}{sign}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{cross}\PYG{p}{(}\PYG{n}{ba}\PYG{p}{,}\PYG{n}{nor}\PYG{p}{),}\PYG{n}{pa}\PYG{p}{))} \PYG{o}{+}
+     \PYG{n}{sign}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{cross}\PYG{p}{(}\PYG{n}{cb}\PYG{p}{,}\PYG{n}{nor}\PYG{p}{),}\PYG{n}{pb}\PYG{p}{))} \PYG{o}{+}
+     \PYG{n}{sign}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{cross}\PYG{p}{(}\PYG{n}{dc}\PYG{p}{,}\PYG{n}{nor}\PYG{p}{),}\PYG{n}{pc}\PYG{p}{))} \PYG{o}{+}
+     \PYG{n}{sign}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{cross}\PYG{p}{(}\PYG{n}{ad}\PYG{p}{,}\PYG{n}{nor}\PYG{p}{),}\PYG{n}{pd}\PYG{p}{))}\PYG{o}{\PYGZlt{}}\PYG{l+m+mf}{3.0}\PYG{p}{)}
+     \PYG{o}{?}
+     \PYG{n}{min}\PYG{p}{(} \PYG{n}{min}\PYG{p}{(} \PYG{n}{min}\PYG{p}{(}
+     \PYG{n}{dot2}\PYG{p}{(}\PYG{n}{ba}\PYG{o}{*}\PYG{n}{clamp}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{ba}\PYG{p}{,}\PYG{n}{pa}\PYG{p}{)}\PYG{o}{/}\PYG{n}{dot2}\PYG{p}{(}\PYG{n}{ba}\PYG{p}{),}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{pa}\PYG{p}{),}
+     \PYG{n}{dot2}\PYG{p}{(}\PYG{n}{cb}\PYG{o}{*}\PYG{n}{clamp}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{cb}\PYG{p}{,}\PYG{n}{pb}\PYG{p}{)}\PYG{o}{/}\PYG{n}{dot2}\PYG{p}{(}\PYG{n}{cb}\PYG{p}{),}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{pb}\PYG{p}{)} \PYG{p}{),}
+     \PYG{n}{dot2}\PYG{p}{(}\PYG{n}{dc}\PYG{o}{*}\PYG{n}{clamp}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{dc}\PYG{p}{,}\PYG{n}{pc}\PYG{p}{)}\PYG{o}{/}\PYG{n}{dot2}\PYG{p}{(}\PYG{n}{dc}\PYG{p}{),}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{pc}\PYG{p}{)} \PYG{p}{),}
+     \PYG{n}{dot2}\PYG{p}{(}\PYG{n}{ad}\PYG{o}{*}\PYG{n}{clamp}\PYG{p}{(}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{ad}\PYG{p}{,}\PYG{n}{pd}\PYG{p}{)}\PYG{o}{/}\PYG{n}{dot2}\PYG{p}{(}\PYG{n}{ad}\PYG{p}{),}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{pd}\PYG{p}{)} \PYG{p}{)}
+     \PYG{o}{:}
+     \PYG{n}{dot}\PYG{p}{(}\PYG{n}{nor}\PYG{p}{,}\PYG{n}{pa}\PYG{p}{)}\PYG{o}{*}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{nor}\PYG{p}{,}\PYG{n}{pa}\PYG{p}{)}\PYG{o}{/}\PYG{n}{dot2}\PYG{p}{(}\PYG{n}{nor}\PYG{p}{)} \PYG{p}{);}
+\end{Verbatim}
