@@ -504,6 +504,10 @@ INPUT _minted-pbr/0CF1E314DDFAB2F57E8C6ED309DE985035AA428D1C622F1C4C6CE83797A25A
 INPUT _minted-pbr/0CF1E314DDFAB2F57E8C6ED309DE985035AA428D1C622F1C4C6CE83797A25A37.pygtex
 INPUT _minted-pbr/0CF1E314DDFAB2F57E8C6ED309DE985035AA428D1C622F1C4C6CE83797A25A37.pygtex
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmitt10.tfm
+INPUT p1/shading.tex
+INPUT p1/shading.tex
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
 INPUT p2/outline.tex
 INPUT p2/outline.tex
 INPUT outline.pdf
@@ -513,6 +517,8 @@ INPUT ./outline.pdf
 OUTPUT outline.dot
 INPUT p2/user.tex
 INPUT p2/user.tex
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 OUTPUT pbr.pyg
 INPUT ./pbr.pyg
 INPUT _minted-pbr/102D8780E6853860719F541F91B31E40254438351013F110D4C2D2AA03ADF754.pygtex
@@ -572,6 +578,7 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb

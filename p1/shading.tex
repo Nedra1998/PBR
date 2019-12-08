@@ -1,0 +1,59 @@
+\documentclass[../pbr.tex]{subfile}
+
+\begin{document}
+\section{Shading}%
+\label{sec:shading}
+
+Being able to calculate light ray intersection points with the objects in the
+scene is only half the process. The other half is calculating the color of
+light, and the shading of the objects. To explain this we will first introduce
+the core concept of rendering called the Rendering Equations.
+
+\subsection{Rendering Equation}%
+\label{sub:rendering_equation}
+
+The core of all rendering is the rendering equation. The explicit form of this
+equation is shown in \ref{eq:render}.
+\begin{align}\label{eq:render}
+  L_o(\mathbf{x},\omega_o,\lambda,t)=L_e(\mathbf{x},\omega_o,\lambda,t)+\int_\Omega
+  f_{bsdf}(\mathbf{x},\omega_i,\omega_o,\lambda,t)L_i(\mathbf{x},\omega_i,\lambda,t)(\omega_i\cdot\mathbf{n})d\omega_i
+\end{align}
+Breaking this equation into these components is necessary for understanding
+it.
+\begin{description}
+  \item[$\mathbf{x}$] is the location in space. This is the point of
+    intersection that we compute earlier in the process.
+  \item[$\omega_o$] is the direction of outgoing \textit{light}. Note that this
+    is the direction of the light, which as we explained earlier is the opposite
+    direction from the ray.
+  \item[$\omega_i$] is the negative direction of incoming light. Since this is
+    the negative direction of the light, and the light is the negative
+    direction of our rays, then we can use the direction of the
+    reflected/refracted rays for this value.
+  \item[$\lambda$] is the wavelength of light that we are considering. This is
+    present as each wavelength of light will interact with a surface slightly
+    differently. However in our simulation we will only consider the standard
+    red, green, blue values of light. This restriction should be removed in a
+    later version of the software.
+  \item[$t$] is the time.
+  \item[$\Omega$] is the unit sphere around the point $\mathbf{x}$, containing
+    all possible values for $\omega_i$.
+  \item[$\mathbf{n}$] is the surface normal at $\mathbf{x}$.
+  \item[$L_o$] is the total \textit{spectral radiance} for the wavelength
+    $\lambda$ in the outward direction $\omega_o$, from the position
+    $\mathbf{x}$ at time $t$.
+  \item[$L_e$] is the emitted spectral radiance of the point $\mathbf{x}$, this
+    will only come into play if the object is marked as missive such as
+    lights.
+  \item[$f_{bsdf}$] Is the bidirectional scattering distribution function.
+    Generally this function determines the probability that a ray of light from
+    the direction $\omega_i$ will be reflected or refracted to the ray of
+    $\omega_o$. If this value is zero, then there should be no contribution
+    from the light along $\omega_i$ to the light along $\omega_o$.
+  \item[$L_i$] is the spectral radiance coming inward toward $\mathbf{x}$ from
+    direction $\omega_i$. To compute this value we would follow the ray in the
+    direction $\omega_i$ until an object is intersected. Then we must compute
+    $L_o$ for that point, with our $\omega_i$ as a new $\omega_o$.
+\end{description}
+
+\end{document}
